@@ -4,6 +4,9 @@ This directory contains hands-on exercises for learning OpenAI Codex CLI.
 
 ## Available Exercises
 
+### Lab 0: Plan Mode Warm-Up
+- `plan-mode-warmup/` - Learn plan mode, steer mode, and key slash commands (15 min)
+
 ### Lab 1: Generate from Scratch
 - `java-spring-boot/` - Build a complete REST API with Spring Boot
 
@@ -30,6 +33,7 @@ Note: These are hands-on exercises where you build the solution using Codex. Ref
 
 ## Recommended Order
 
+0. **Lab 0** - Plan Mode Warm-Up (interaction model, 15 min)
 1. **Lab 1** - Java Spring Boot (generation)
 2. **Lab 2** - Python Refactoring (code improvement)
 3. **Lab 3** - React Forms (frontend development)

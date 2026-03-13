@@ -196,7 +196,7 @@ $create-plan                   # Research and plan features
 # Configuration
 codex --profile dev           # Use specific profile
 codex --sandbox read-only     # Set sandbox mode
-codex --model gpt-5.2-codex   # Select model
+codex --model gpt-5.4         # Select model
 
 # Advanced
 codex mcp                     # Run as MCP server

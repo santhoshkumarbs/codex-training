@@ -5,8 +5,8 @@
 # See advanced-config.toml for all available options.
 
 # Model Selection
-# GPT-5.2-Codex is the latest and default model (January 2026)
-model = "gpt-5.2-codex"
+# GPT-5.4 is the latest and default model (March 2026)
+model = "gpt-5.4"
 
 # Security Settings
 # on-request: Ask before executing commands (recommended for beginners)

@@ -75,7 +75,7 @@ jobs:
           
           Changed files:
           ${{ steps.changed.outputs.files }}" \
-            --model gpt-5-codex-mini \
+            --model gpt-5.2-codex \
             --dangerously-bypass-approvals-and-sandbox \
             > /tmp/review-output.md 2>&1 || true
 

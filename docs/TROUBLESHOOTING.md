@@ -64,7 +64,7 @@ export OPENAI_API_KEY="sk-..."
 ```bash
 # Wait 60 seconds and retry
 # Or switch to a different model
-codex --model gpt-5-codex-mini
+codex --model gpt-5.2-codex
 
 # Check your rate limits
 cat ~/.codex/config.toml | grep rate
@@ -191,7 +191,7 @@ codex
 codex --model list
 
 # Use a fallback model
-codex --model gpt-5-codex-mini
+codex --model gpt-5.2-codex
 
 # Check your API access level
 curl https://api.openai.com/v1/models \
@@ -205,7 +205,7 @@ curl https://api.openai.com/v1/models \
 grep model ~/.codex/config.toml
 
 # Try with explicit model
-codex --model gpt-5.2-codex
+codex --model gpt-5.4
 
 # Use a profile with known-good settings
 codex --profile production
@@ -224,7 +224,7 @@ codex --profile production
 
 2. **Try a faster model**
    ```bash
-   codex --model gpt-5-codex-mini
+   codex --model gpt-5.2-codex
    ```
 
 3. **Reduce context size**
@@ -244,7 +244,7 @@ codex --profile production
 
 ```bash
 # Use mini model for simple tasks
-codex --model gpt-5-codex-mini
+codex --model gpt-5.2-codex
 
 # Be specific in prompts (shorter responses)
 codex "Fix the bug on line 42"  # vs "Review the whole file"
@@ -349,6 +349,6 @@ codex
 | "Authentication failed" | Bad credentials | `rm -rf ~/.codex/auth && codex login` |
 | "Operation not permitted" | Sandbox restriction | `/elevate-sandbox` or `--sandbox full-access` |
 | "MCP server failed" | Missing env var | Check `$GITHUB_TOKEN` etc. |
-| "Rate limit exceeded" | Too many requests | Wait 60s or use mini model |
+| "Rate limit exceeded" | Too many requests | Wait 60s or use smaller model |
 | Slow responses | Large context | Reduce `project_doc_max_bytes` |
 | Session corrupted | Cache issue | `rm -rf ~/.codex/sessions/*` |

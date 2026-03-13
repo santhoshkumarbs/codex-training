@@ -34,8 +34,8 @@ paths:
   # Add your extensions
 
 # Use different model
---model gpt-5.2-codex  # More thorough
---model gpt-5-codex-mini  # Faster, cheaper
+--model gpt-5.4        # More thorough
+--model gpt-5.2-codex  # Faster, cheaper
 ```
 
 ## Security Notes

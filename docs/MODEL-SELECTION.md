@@ -8,18 +8,18 @@ Choose the right model for your task based on cost, speed, and capability.
 
 | Model | Best For | Speed | Cost | Context |
 |-------|----------|-------|------|---------|
-| **GPT-5.2-Codex** | Complex refactoring, architecture | Slower | $$$ | 128K |
-| **GPT-5-Codex** | General coding, reviews | Medium | $$ | 128K |
-| **GPT-5-Codex-Mini** | Quick tasks, high volume | Fast | $ | 128K |
-| **GPT-5.1-Codex-Max** | Large projects, long sessions | Slow | $$$$ | 1M |
-| **Claude Sonnet 4** | Alternative perspective | Medium | $$ | 200K |
+| **GPT-5.4** | Complex refactoring, architecture | Medium | $$$ | 272K |
+| **GPT-5.3-Codex** | General coding, reviews | Medium | $$ | 272K |
+| **GPT-5.2-Codex** | Quick tasks, high volume | Fast | $ | 272K |
+| **GPT-5.1-Codex-Max** | Large projects, deep reasoning | Slow | $$$$ | 272K |
+| **Claude Opus 4.6** | Alternative perspective | Medium | $$$ | 200K |
 | **Ollama (local)** | Privacy, offline, free | Varies | Free | Varies |
 
 ---
 
 ## Model Details
 
-### GPT-5.2-Codex (Default)
+### GPT-5.4 (Default)
 
 **Use when:**
 - Complex architectural decisions
@@ -33,10 +33,10 @@ Choose the right model for your task based on cost, speed, and capability.
 - Cost is a primary concern
 
 ```bash
-codex --model gpt-5.2-codex "Refactor authentication to use OAuth2"
+codex --model gpt-5.4 "Refactor authentication to use OAuth2"
 ```
 
-### GPT-5-Codex
+### GPT-5.3-Codex
 
 **Use when:**
 - Day-to-day coding tasks
@@ -47,10 +47,10 @@ codex --model gpt-5.2-codex "Refactor authentication to use OAuth2"
 **Sweet spot:** Best balance of capability and cost for most tasks.
 
 ```bash
-codex --model gpt-5-codex "Add unit tests for UserService"
+codex --model gpt-5.3-codex "Add unit tests for UserService"
 ```
 
-### GPT-5-Codex-Mini
+### GPT-5.2-Codex
 
 **Use when:**
 - Simple fixes and formatting
@@ -64,10 +64,10 @@ codex --model gpt-5-codex "Add unit tests for UserService"
 - Security-sensitive analysis
 
 ```bash
-codex --model gpt-5-codex-mini "Fix the typo in line 42"
+codex --model gpt-5.2-codex "Fix the typo in line 42"
 ```
 
-**Pro tip:** 4x more usage at same cost as standard model.
+**Note:** Available on free tier.
 
 ### GPT-5.1-Codex-Max
 
@@ -75,7 +75,7 @@ codex --model gpt-5-codex-mini "Fix the typo in line 42"
 - Entire codebase analysis
 - Long-running sessions (hours)
 - Project-scale refactoring
-- Large context needed (1M tokens)
+- Deep reasoning tasks
 
 **Avoid when:**
 - Quick tasks (overkill)
@@ -130,11 +130,11 @@ model = "codellama:34b"
 ```toml
 # config.toml
 [profiles.quick]
-model = "gpt-5-codex-mini"
+model = "gpt-5.2-codex"
 approval_policy = "never"
 
 [profiles.thorough]
-model = "gpt-5.2-codex"
+model = "gpt-5.4"
 approval_policy = "on-request"
 ```
 
@@ -143,7 +143,12 @@ codex --profile quick "Fix formatting"
 codex --profile thorough "Security audit"
 ```
 
-### 2. Be Specific in Prompts
+### 2. Use Fast Mode
+
+Fast mode is now enabled by default. Toggle with `/fast` in the TUI
+or pass `--fast` on the command line.
+
+### 3. Be Specific in Prompts
 
 ```bash
 # Expensive: vague, generates lots of output
@@ -153,18 +158,18 @@ codex "Review this file"
 codex "Check line 50-60 for null pointer issues"
 ```
 
-### 3. Reduce Context Size
+### 4. Reduce Context Size
 
 ```toml
 # Smaller AGENTS.md = fewer tokens
 project_doc_max_bytes = 16384  # 16KB instead of 32KB
 ```
 
-### 4. Use Mini for CI/CD
+### 5. Use Smaller Models for CI/CD
 
 ```yaml
 # In GitHub Actions
-codex exec "..." --model gpt-5-codex-mini
+codex exec "..." --model gpt-5.2-codex
 ```
 
 ---
@@ -173,20 +178,20 @@ codex exec "..." --model gpt-5-codex-mini
 
 ```
 Is this a quick fix or formatting?
-├─ Yes → GPT-5-Codex-Mini
+├─ Yes → GPT-5.2-Codex
 └─ No
    │
    Is this security/production critical?
-   ├─ Yes → GPT-5.2-Codex
+   ├─ Yes → GPT-5.4
    └─ No
       │
-      Does it need huge context (>128K)?
+      Does it need deep reasoning?
       ├─ Yes → GPT-5.1-Codex-Max
       └─ No
          │
          Is cost a concern?
-         ├─ Yes → GPT-5-Codex-Mini
-         └─ No → GPT-5-Codex
+         ├─ Yes → GPT-5.2-Codex
+         └─ No → GPT-5.3-Codex
 ```
 
 ---
@@ -209,14 +214,14 @@ file = "~/.codex/log/codex.log"
 
 | Task | Recommended Model |
 |------|-------------------|
-| Fix typos, formatting | Mini |
-| Add comments/docs | Mini |
-| Simple bug fixes | Mini |
-| Unit test generation | Standard |
-| Code review | Standard |
-| Refactoring | Standard or 5.2 |
-| Architecture design | 5.2-Codex |
-| Security audit | 5.2-Codex |
+| Fix typos, formatting | 5.2-Codex |
+| Add comments/docs | 5.2-Codex |
+| Simple bug fixes | 5.2-Codex |
+| Unit test generation | 5.3-Codex |
+| Code review | 5.3-Codex |
+| Refactoring | 5.3-Codex or 5.4 |
+| Architecture design | 5.4 |
+| Security audit | 5.4 |
 | Full codebase analysis | 5.1-Codex-Max |
-| CI/CD automation | Mini |
-| Learning/experimenting | Mini |
+| CI/CD automation | 5.2-Codex |
+| Learning/experimenting | 5.2-Codex |

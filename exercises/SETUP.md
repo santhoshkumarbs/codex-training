@@ -8,6 +8,7 @@ This directory contains hands-on exercises for learning OpenAI Codex CLI. Each e
 
 ```
 exercises/
+├── plan-mode-warmup/      # Lab 0: Plan Mode & New Defaults (15 min)
 ├── java-spring-boot/      # Lab 1: REST API Development
 ├── python-refactoring/    # Lab 2: Code Refactoring
 ├── react-forms/           # Lab 3: Frontend Development
@@ -40,6 +41,19 @@ docker --version
 ```
 
 ## Setup Instructions
+
+### Lab 0: Plan Mode Warm-Up
+
+```bash
+cd plan-mode-warmup/starter
+pip install pytest  # if not already installed
+```
+
+The starter includes:
+- `inventory.py` — Small Python module with two intentional bugs
+- `test_inventory.py` — Partial test suite
+
+**Your Task**: Learn plan mode, steer mode, and key slash commands while fixing bugs and adding tests.
 
 ### Lab 1: Spring Boot API
 

@@ -1,14 +1,14 @@
 # OpenAI Codex CLI - Advanced Configuration Example
 # Location: ~/.codex/config.toml
 
-# Model Configuration (January 2026)
-model = "gpt-5.2-codex"
+# Model Configuration (March 2026)
+model = "gpt-5.4"
 model_provider = "openai"
 
 # Alternative OpenAI models:
-# model = "gpt-5-codex"        # Stable workhorse
-# model = "gpt-5-codex-mini"   # Cost-effective, 4x more usage
-# model = "gpt-5.1-codex-max"  # Long-running project-scale work
+# model = "gpt-5.3-codex"      # Frontier agentic coding model
+# model = "gpt-5.2-codex"      # Stable, available on free tier
+# model = "gpt-5.1-codex-max"  # Deep reasoning, long sessions
 
 # Alternative model providers
 # model_provider = "anthropic"
@@ -54,19 +54,19 @@ format = "json"  # Options: json, pretty
 
 # Profiles for Different Environments
 [profiles.development]
-model = "gpt-5-codex-mini"
+model = "gpt-5.2-codex"
 approval_policy = "never"
 sandbox_mode = "full-access"
 shell_environment_policy = "inherit"
 
 [profiles.production]
-model = "gpt-5.2-codex"
+model = "gpt-5.4"
 approval_policy = "on-request"
 sandbox_mode = "read-only"
 shell_environment_policy = "explicit"
 
 [profiles.testing]
-model = "gpt-5-codex-mini"
+model = "gpt-5.2-codex"
 approval_policy = "on-request"
 sandbox_mode = "auto"
 project_doc_max_bytes = 16384
@@ -105,7 +105,7 @@ env = { API_KEY = "${CUSTOM_API_KEY}" }
 [providers.anthropic]
 type = "anthropic"
 api_key = "${ANTHROPIC_API_KEY}"
-model = "claude-3-opus-20240229"
+model = "claude-sonnet-4-20250514"
 max_tokens = 4096
 
 [providers.ollama]

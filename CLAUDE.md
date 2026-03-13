@@ -7,7 +7,7 @@ This repository contains training materials for a 5-hour hands-on workshop on Op
 - **Purpose**: Professional training course for developers learning Codex CLI
 - **Audience**: Developers with command-line experience, basic programming knowledge
 - **Format**: Slidev presentation + hands-on exercises
-- **Current Codex Version**: v0.87 (January 2026)
+- **Current Codex Version**: v0.114 (March 2026)
 
 ## Key Files
 
@@ -32,11 +32,11 @@ This repository contains training materials for a 5-hour hands-on workshop on Op
 
 ## Important Notes
 
-### Model Names (January 2026)
-- `gpt-5.2-codex` - Latest, default
-- `gpt-5-codex` - Stable workhorse
-- `gpt-5-codex-mini` - Cost-effective
-- `gpt-5.1-codex-max` - Large context (1M tokens)
+### Model Names (March 2026)
+- `gpt-5.4` - Latest frontier model, default
+- `gpt-5.3-codex` - Frontier agentic coding model
+- `gpt-5.2-codex` - Stable, available on free tier
+- `gpt-5.1-codex-max` - Deep reasoning, long sessions
 
 ### Installation
 ```bash

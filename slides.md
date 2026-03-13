@@ -167,10 +167,10 @@ Kousen IT, Inc.
 
 <v-clicks>
 
-- <span style="color: #00D4FF">**GPT-5.2-Codex**</span> - Latest, default for API (January 2026)
-- <span style="color: #00D4FF">**GPT-5-Codex**</span> - Stable workhorse model
-- <span style="color: #00D4FF">**GPT-5-Codex-Mini**</span> - Cost-effective, 4x more usage
-- <span style="color: #00D4FF">**GPT-5.1-Codex-Max**</span> - Long-running project-scale work
+- <span style="color: #00D4FF">**GPT-5.4**</span> - Latest frontier model, default (March 2026)
+- <span style="color: #00D4FF">**GPT-5.3-Codex**</span> - Frontier agentic coding model
+- <span style="color: #00D4FF">**GPT-5.2-Codex**</span> - Stable, available on free tier
+- <span style="color: #00D4FF">**GPT-5.1-Codex-Max**</span> - Deep reasoning, long sessions
 - Anthropic Claude via API
 - Local models via Ollama
 
@@ -280,10 +280,16 @@ codex exec "generate a README"
 
 - `/status` - Show session info & token usage
 - `/diff` - Review all pending changes
-- `/clear` - Clear conversation history
+- `/clear` - Clear screen or start fresh chat
 - `/save` - Save current session
 - `/help` - Show available commands
-- `/settings` - Adjust runtime settings
+- `/plan` - Toggle plan mode
+- `/fast` - Toggle fast/standard mode
+- `/permissions` - Manage sandbox permissions
+- `/skill` - Enable/disable skills
+- `/copy` - Copy last assistant reply
+- `/theme` - Syntax highlighting theme picker
+- `/debug-config` - Inspect effective config
 
 </v-clicks>
 
@@ -312,9 +318,9 @@ Review line-by-line before approving!
 Shows comprehensive session information:
 
 ```
-Current model: gpt-5.2-codex
+Current model: gpt-5.4
 Session ID: abc123
-Token usage: 15,432 / 128,000
+Token usage: 15,432 / 272,000
 Cost estimate: $0.46
 Time elapsed: 12m 34s
 ```
@@ -714,8 +720,8 @@ backgroundSize: cover
 
 | Scope | Location | Use Case |
 |-------|----------|----------|
-| **User** | <span style="color: #00D4FF">`~/.codex/skills/`</span> | Personal workflows |
-| **Repository** | <span style="color: #00D4FF">`.codex/skills/`</span> | Team-shared skills |
+| **User** | <span style="color: #00D4FF">`~/.agents/skills/`</span> | Personal workflows |
+| **Repository** | <span style="color: #00D4FF">`.agents/skills/`</span> | Team-shared skills |
 | **Admin** | System-managed | Enterprise policies |
 
 Skills load in precedence order: repo → user → admin
@@ -818,7 +824,7 @@ Codex will:
 
 | Aspect | Custom Prompts | Agent Skills |
 |--------|---------------|--------------|
-| **Location** | `~/.codex/prompts/` | `~/.codex/skills/` |
+| **Location** | `~/.codex/prompts/` | `~/.agents/skills/` |
 | **Structure** | Single `.md` file | Folder with resources |
 | **Invocation** | Slash commands | `$skill-name` or auto |
 | **Resources** | Text only | Scripts, templates, refs |
@@ -834,8 +840,8 @@ Codex will:
 |--------|-------------|-----------|
 | Spec | agentskills.io | agentskills.io |
 | Format | SKILL.md + YAML | SKILL.md + YAML |
-| User Location | `~/.claude/skills/` | `~/.codex/skills/` |
-| Repo Location | `.claude/skills/` | `.codex/skills/` |
+| User Location | `~/.claude/skills/` | `~/.agents/skills/` |
+| Repo Location | `.claude/skills/` | `.agents/skills/` |
 | Invocation | Auto/explicit | `$skill-name` or auto |
 | Creator | skill-creator | `$skill-creator` |
 
@@ -851,12 +857,12 @@ Codex will:
 # ~/.codex/config.toml
 
 [profiles.production]
-model = "gpt-5.2-codex"
+model = "gpt-5.4"
 approval_policy = "on-request"
 sandbox_mode = "workspace-write"
 
 [profiles.development]
-model = "gpt-5-codex-mini"
+model = "gpt-5.2-codex"
 approval_policy = "never"
 sandbox_mode = "danger-full-access"
 ```
@@ -1237,7 +1243,7 @@ model = "codellama"
 type = "azure-openai"
 api_key = "${AZURE_API_KEY}"
 endpoint = "https://myinstance.openai.azure.com"
-deployment = "gpt-5-codex"
+deployment = "gpt-5.4"
 ```
 
 ---
@@ -1330,11 +1336,11 @@ npm run build
 
 ```toml
 # ~/.codex/config.toml
-model = "gpt-5.2-codex"
+model = "gpt-5.4"
 model_provider = "openai"
 approval_policy = "on-request"
 sandbox_mode = "workspace-write"
-web_search_request = true
+personality = "friendly"  # Options: friendly, pragmatic, none
 ```
 
 ---
@@ -1535,6 +1541,7 @@ backgroundSize: cover
 
 <v-clicks>
 
+- **Lab 0**: Plan Mode Warm-Up (learn the new defaults, 15 min)
 - **Lab 1**: Spring Boot REST API (generate from scratch)
 - **Lab 2**: Python Refactoring (improve legacy code)
 - **Lab 3**: React TypeScript Forms (frontend development)
@@ -1557,6 +1564,20 @@ backgroundSize: cover
 </v-clicks>
 
 Note: You build the solution using Codex—no reference implementations provided!
+
+---
+
+# Lab 0: Plan Mode Warm-Up
+
+<v-clicks>
+
+- Objective: Learn plan mode, steer mode, and new slash commands
+- Timebox: 15–20 minutes
+- Workspace: `exercises/plan-mode-warmup`
+- Fix bugs in a small Python module while learning the interaction model
+- Practice `/plan`, `/fast`, `/copy`, `/theme`, `/debug-config`
+
+</v-clicks>
 
 ---
 
@@ -1771,10 +1792,10 @@ cd ~/.codex/prompts && git pull
 
 ```toml
 [profiles.quick]
-model = "gpt-5-codex-mini"  # Fast responses
+model = "gpt-5.2-codex"  # Fast responses
 
 [profiles.complex]
-model = "gpt-5.2-codex"  # Complex reasoning
+model = "gpt-5.4"  # Complex reasoning
 ```
 
 ---
@@ -1884,7 +1905,7 @@ RUST_LOG=trace codex
 codex --model list
 
 # Fall back to different model
-codex --model gpt-5-codex-mini
+codex --model gpt-5.2-codex
 
 # Verify API connectivity
 curl -I https://api.openai.com/v1/models
@@ -1897,7 +1918,7 @@ curl -I https://api.openai.com/v1/models
 | Error | Cause | Fix |
 |-------|-------|-----|
 | "Token expired" | Auth timeout | `codex login` again |
-| "Rate limited" | Too many requests | Wait or use --model mini |
+| "Rate limited" | Too many requests | Wait or use smaller model |
 | "No such table" | Wrong osquery platform | Check platform docs |
 | "Sandbox denied" | Permission blocked | Adjust sandbox mode |
 
@@ -2049,36 +2070,53 @@ done
 
 ---
 
-# Recent Features (v0.40-0.87)
+# Recent Features (v0.88-0.114)
 
 ---
 
-# Version 0.40-0.87 Highlights
+# Version 0.88-0.114 Highlights (Jan-Mar 2026)
 
 <v-clicks>
 
-- **Agent Skills** (v0.76) - Reusable instruction bundles
-- **GPT-5.2-Codex** (v0.81) - New default API model
-- **Project-local config** (v0.78) - `.codex/config.toml` per-repo
-- **Multi-agent control** (v0.79) - Spawn/message conversations
-- **Thread rollback** (v0.79) - Undo last N turns
-- **Elevated sandbox** (v0.80) - `/elevate-sandbox` command
-- **Ctrl+G editor** (v0.78) - Open prompt in external editor
-- **Enterprise MDM** (v0.78) - Managed configuration on macOS
+- **GPT-5.4** (v0.114) - Latest frontier model, now default
+- **GPT-5.3-Codex** (v0.98) - New flagship coding model
+- **Plan mode default** (v0.94) - Plan → execute workflow
+- **Fast mode default** (v0.111) - Faster output by default
+- **Plugin system** (v0.110) - Marketplace, install/uninstall
+- **Memory system** (v0.97) - Persistent thread memories
+- **Multi-agent forking** (v0.107) - Fork threads into sub-agents
+- **Hooks engine** (v0.114) - SessionStart/Stop hook events
 
 </v-clicks>
 
 ---
 
-# Earlier Features (v0.30-0.39)
+# More New Features (v0.88-0.114)
 
 <v-clicks>
 
-- MCP startup timeouts (v0.31)
-- Token usage in /status command (v0.35)
-- GPT-5-Codex high reasoning mode (v0.36)
-- Network allowlists for testing (v0.36)
-- Simplified MCP server: `codex mcp` (v0.37)
+- **Syntax highlighting** (v0.105) - Code blocks & `/theme` picker
+- **Voice input** (v0.105) - Hold spacebar to dictate (experimental)
+- **JS REPL** (v0.100) - Persistent JavaScript runtime
+- **Codex Desktop** (v0.95) - `codex app` launches desktop app
+- **Smart approvals** (v0.93) - MCP tool approval by default
+- **Steer mode** (v0.98) - Enter sends during tasks, Tab queues
+- **Personality config** (v0.94) - friendly/pragmatic/none
+- **Network proxy** (v0.90) - Policy-enforced outbound access
+
+</v-clicks>
+
+---
+
+# Earlier Features (v0.40-0.87)
+
+<v-clicks>
+
+- Agent Skills (v0.76) - Reusable instruction bundles
+- Project-local config (v0.78) - `.codex/config.toml` per-repo
+- Multi-agent control (v0.79) - Spawn/message conversations
+- Thread rollback (v0.79) - Undo last N turns
+- Elevated sandbox (v0.80) - `/elevate-sandbox` command
 - Hierarchical AGENTS.md cascading (v0.39)
 
 </v-clicks>
@@ -2099,10 +2137,10 @@ startup_timeout_ms = 15000  # Recommended
 
 # Advanced Model Control (v0.36+)
 
-Use GPT-5-Codex for complex, long-running tasks:
+Use GPT-5.4 with high reasoning for complex, long-running tasks:
 
 ```bash
-codex -m gpt-5-codex -c model_reasoning_effort='high'
+codex -m gpt-5.4 -c model_reasoning_effort='high'
 ```
 
 Or configure in TOML:
@@ -2183,28 +2221,34 @@ in v0.36+ (check release notes)
 
 ---
 
-# What Shipped in 2025
+# What Shipped (2025-2026)
 
 <v-clicks>
 
-- **Agent Skills** - Reusable instruction bundles (Dec 2025)
-- **VS Code Extension** - IDE integration shipped
-- **Codex Cloud** - Launch cloud tasks from CLI
-- **Multi-agent coordination** - Thread spawning and messaging
-- **GPT-5 Model Family** - 5.2-Codex, 5.1-Codex-Max, Mini
+- **GPT-5.4 & 5.3-Codex** - Latest frontier models (2026)
+- **Plugin marketplace** - Discover, install, manage plugins
+- **Memory system** - Persistent thread memories with `/m_update`
+- **Plan & Fast modes** - Now enabled by default
+- **Multi-agent forking** - Sub-agents with max 6 concurrent
+- **JS REPL** - Persistent JavaScript runtime
+- **Codex Desktop** - Native app via `codex app`
+- **Voice input** - Spacebar-to-dictate (experimental)
 
 </v-clicks>
 
 ---
 
-# What's Coming (2026)
+# What's New in the TUI
 
 <v-clicks>
 
-- Enhanced skills marketplace
-- Deeper IDE integrations
-- Advanced collaboration features
-- Extended platform support
+- Syntax-highlighted code blocks and diffs
+- `/theme` picker with live preview
+- `/copy` to copy assistant replies
+- `/fast` toggle in header
+- `/debug-config` for troubleshooting
+- `@plugin` mentions in chat
+- Steer mode: Enter sends, Tab queues
 
 </v-clicks>
 
@@ -2215,8 +2259,8 @@ in v0.36+ (check release notes)
 <v-clicks>
 
 - Open source at github.com/openai/codex
-- 56k+ GitHub stars, 400+ releases
-- Skills catalog at github.com/openai/skills
+- 56k+ GitHub stars, 500+ releases
+- Plugin marketplace for skills, apps, and connectors
 - Active discussions and contributions welcome
 
 </v-clicks>
@@ -2332,10 +2376,10 @@ For teams using both tools:
 
 | Aspect | Codex CLI | Claude Code |
 |--------|-----------|-------------|
-| **Model** | GPT-5.2-Codex | Claude Sonnet 4 |
+| **Model** | GPT-5.4 | Claude Opus 4.6 |
 | **Runtime** | Rust | TypeScript |
 | **Memory File** | AGENTS.md | CLAUDE.md |
-| **Skills Location** | `~/.codex/skills/` | `~/.claude/skills/` |
+| **Skills Location** | `~/.agents/skills/` | `~/.claude/skills/` |
 | **Skill Invoke** | `$skill-name` | Auto or explicit |
 | **Cloud Tasks** | Codex Cloud | - |
 
@@ -2346,7 +2390,7 @@ For teams using both tools:
 <v-clicks>
 
 **Choose Codex CLI when:**
-- GPT-5 model strengths needed
+- GPT-5.4 model strengths needed
 - Codex Cloud for long tasks
 - Enterprise MDM requirements
 

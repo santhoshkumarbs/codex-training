@@ -40,7 +40,7 @@ $skill-creator Create a skill for generating conventional commit messages
 Your completed skill should have this structure:
 
 ```
-~/.codex/skills/commit-gen/
+~/.agents/skills/commit-gen/
 ├── SKILL.md          # Required: YAML frontmatter + instructions
 ├── references/       # Optional: commit examples
 │   └── conventions.md
@@ -60,7 +60,7 @@ Review the generated SKILL.md and customize as needed.
 
 ### Step 2: Define the Skill Metadata
 
-Edit `~/.codex/skills/commit-gen/SKILL.md`:
+Edit `~/.agents/skills/commit-gen/SKILL.md`:
 
 ```yaml
 ---
@@ -105,7 +105,7 @@ Generate conventional commit messages following project standards.
 
 ### Step 3: Add Reference Material
 
-Create `~/.codex/skills/commit-gen/references/conventions.md`:
+Create `~/.agents/skills/commit-gen/references/conventions.md`:
 
 ```markdown
 # Conventional Commits Quick Reference
@@ -167,7 +167,7 @@ Use lowercase, typically matching:
 
 ## Success Criteria
 
-- [ ] Skill created at `~/.codex/skills/commit-gen/`
+- [ ] Skill created at `~/.agents/skills/commit-gen/`
 - [ ] SKILL.md has valid YAML frontmatter
 - [ ] Description triggers match commit-related queries
 - [ ] Skill correctly analyzes staged changes
@@ -186,11 +186,11 @@ Use lowercase, typically matching:
 
 ### Project-Level Sharing
 
-Copy your skill to the project's `.codex/skills/` directory:
+Copy your skill to the project's `.agents/skills/` directory:
 
 ```bash
-cp -r ~/.codex/skills/commit-gen .codex/skills/
-git add .codex/skills/commit-gen
+cp -r ~/.agents/skills/commit-gen .agents/skills/
+git add .agents/skills/commit-gen
 git commit -m "chore: add commit-gen skill for team"
 ```
 

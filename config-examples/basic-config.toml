@@ -5,29 +5,27 @@
 # See advanced-config.toml for all available options.
 
 # Model Selection
-# GPT-5.4 is the latest and default model (March 2026)
+# As of March 13, 2026, GPT-5.4 is the current default in Codex.
 model = "gpt-5.4"
 
 # Security Settings
 # on-request: Ask before executing commands (recommended for beginners)
 # never: Never ask (for experienced users)
-# on-failure: Only ask after errors
+# on-failure exists but is deprecated in current CLI help
 approval_policy = "on-request"
 
 # Sandbox Mode
-# auto: Automatically determine based on operation risk
 # read-only: Only allow read operations
 # workspace-write: Allow writes only in current workspace
-# full-access: No restrictions (use with caution)
-sandbox_mode = "auto"
+# danger-full-access: No restrictions (use with caution)
+sandbox_mode = "workspace-write"
 
 # Project Documentation
 # Maximum bytes to read from AGENTS.md files
 project_doc_max_bytes = 32768
 
-# Web Search (optional)
-# Enable web search for up-to-date information
-web_search_request = true
+# Live web search is enabled per run:
+# codex --search "look up current release notes"
 
 # That's it! This basic config is enough to get started.
 #

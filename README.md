@@ -11,7 +11,7 @@ This 5-hour hands-on workshop covers everything from basic installation to advan
 - 🚀 **Installation & Setup**: Multiple authentication methods, configuration strategies
 - 🛡️ **Safety & Security**: Sandbox modes, approval policies, secure configurations
 - 🎯 **Core Features**: Project memory (AGENTS.md), custom prompts, profiles
-- ⚡ **Agent Skills**: Reusable workflow bundles (NEW in v0.76!)
+- ⚡ **Agent Skills**: Reusable workflow bundles for repeatable workflows
 - 🔧 **Advanced Capabilities**: MCP integration, multi-model support, CI/CD workflows
 - 💻 **Practical Skills**: Real-world exercises in Java, Python, and TypeScript
 
@@ -28,6 +28,7 @@ This 5-hour hands-on workshop covers everything from basic installation to advan
 codex-training/
 ├── slides.md                     # Slidev presentation (160+ slides)
 ├── exercises/                    # Hands-on labs with starter code
+│   ├── plan-mode-warmup/        # Lab 0: Plan mode and steering warm-up
 │   ├── java-spring-boot/        # Lab 1: Spring Boot REST API
 │   ├── python-refactoring/      # Lab 2: Legacy code refactoring
 │   ├── react-forms/             # Lab 3: React TypeScript forms
@@ -67,8 +68,8 @@ codex --version
 # ChatGPT account (recommended)
 codex login
 
-# Or use API key
-export OPENAI_API_KEY="your-key"
+# Or store an API key with Codex
+printenv OPENAI_API_KEY | codex login --with-api-key
 ```
 
 ### 3. Run Your First Command
@@ -94,6 +95,14 @@ npm run dev
 ```
 
 ## Exercises
+
+### Lab 0: Plan Mode Warm-Up
+Learn the current Codex interaction model before the larger labs:
+- Review and approve plans
+- Steer an in-flight task with follow-up messages
+- Practice key slash commands
+
+**Time**: 15-20 minutes
 
 ### Lab 1: Spring Boot REST API
 Build a complete task management API with Spring Boot, including:
@@ -148,7 +157,7 @@ Create a custom Codex skill using `$skill-creator`:
 - ✅ Custom prompts and profiles
 - ✅ Session management and resumption
 
-### Agent Skills (NEW in v0.76!)
+### Agent Skills
 - ✅ Creating reusable skill bundles
 - ✅ SKILL.md format and structure
 - ✅ Explicit (`$skill-name`) and implicit invocation
@@ -157,10 +166,10 @@ Create a custom Codex skill using `$skill-creator`:
 
 ### Advanced Features
 - ✅ Model Context Protocol (MCP)
-- ✅ Multi-model provider support (GPT-5.2-Codex, Anthropic, Ollama)
+- ✅ Multi-model provider support (OpenAI, Anthropic, Ollama)
 - ✅ Running as MCP server
 - ✅ CI/CD integration
-- ✅ Headless execution
+- ✅ Non-interactive execution
 
 ### Configuration
 - ✅ TOML configuration files
@@ -188,20 +197,25 @@ codex exec "prompt"            # Execute and exit
 codex resume                   # Resume session picker
 codex resume --last            # Resume most recent session
 
-# Agent Skills
-$skill-creator                 # Create new skill
-$skill-installer <name>        # Install skill from catalog
-$create-plan                   # Research and plan features
-
 # Configuration
-codex --profile dev           # Use specific profile
-codex --sandbox read-only     # Set sandbox mode
-codex --model gpt-5.4         # Select model
+codex --profile development    # Use specific profile
+codex --sandbox read-only      # Set sandbox mode
+codex --model gpt-5.4          # Select model
+codex --search "latest docs"   # Enable live web search for that run
 
 # Advanced
-codex mcp                     # Run as MCP server
-codex cloud exec              # Launch cloud task
-codex login --headless        # Headless authentication
+codex mcp list                 # List configured MCP servers
+codex mcp-server               # Expose Codex itself as an MCP server
+codex cloud exec "prompt"      # Launch a cloud task
+codex login --device-auth      # Device-auth flow for remote/headless environments
+```
+
+Inside an interactive Codex session, you can also invoke skills directly:
+
+```text
+$skill-creator
+$skill-installer linear
+$create-plan
 ```
 
 ## Resources

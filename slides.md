@@ -150,8 +150,8 @@ Kousen IT, Inc.
 <v-clicks>
 
 ## ChatGPT Account (Recommended)
-- Uses existing ChatGPT subscription
-- Zero Data Retention (ZDR)
+- Uses your ChatGPT account login
+- Included in ChatGPT Free and Go for a limited time
 - Simplified login flow
 
 ## API Key
@@ -167,10 +167,10 @@ Kousen IT, Inc.
 
 <v-clicks>
 
-- <span style="color: #00D4FF">**GPT-5.4**</span> - Latest frontier model, default (March 2026)
-- <span style="color: #00D4FF">**GPT-5.3-Codex**</span> - Frontier agentic coding model
-- <span style="color: #00D4FF">**GPT-5.2-Codex**</span> - Stable, available on free tier
-- <span style="color: #00D4FF">**GPT-5.1-Codex-Max**</span> - Deep reasoning, long sessions
+- <span style="color: #00D4FF">**GPT-5.4**</span> - Current default for complex professional work
+- <span style="color: #00D4FF">**GPT-5.3-Codex**</span> - Most capable current agentic coding model
+- <span style="color: #00D4FF">**GPT-5.2-Codex**</span> - Strong long-horizon coding model
+- <span style="color: #00D4FF">**codex-mini-latest**</span> - Fast Codex CLI iteration loop
 - Anthropic Claude via API
 - Local models via Ollama
 
@@ -219,8 +219,8 @@ codex --version
 # Interactive login
 codex login
 
-# Headless login for servers
-codex login --headless
+# Device-auth login for remote servers
+codex login --device-auth
 ```
 
 ---
@@ -381,9 +381,9 @@ rg "database connection"
 
 # Web Search Capabilities
 
-```toml
-# ~/.codex/config.toml
-web_search_request = true
+```bash
+# One-off run with live web search enabled
+codex --search "latest Spring Boot validation guidance"
 ```
 
 <v-clicks>
@@ -1092,10 +1092,7 @@ startup_timeout_ms = 15000  # Abort after 15 seconds
 
 ```bash
 # Modern approach (v0.37+)
-codex mcp --config ~/.codex/config.toml
-
-# Legacy approach
-codex serve --port 8080
+codex mcp-server --config ~/.codex/config.toml
 ```
 
 ---
@@ -1127,7 +1124,7 @@ flowchart TB
 
 # MCP Server Benefits
 
-The `codex mcp` command exposes Codex as a tool:
+The `codex mcp-server` command exposes Codex as a tool:
 
 <v-clicks>
 
@@ -1157,7 +1154,7 @@ The `codex mcp` command exposes Codex as a tool:
 
 ```bash
 # Add Codex as MCP server in Claude Code
-claude mcp add codex -- codex mcp
+claude mcp add codex -- codex mcp-server
 
 # List MCP servers
 claude mcp list
@@ -1853,7 +1850,7 @@ backgroundSize: cover
 rm -rf ~/.codex/auth
 
 # Re-authenticate
-codex login --headless
+codex login --device-auth
 ```
 
 ---
@@ -1901,8 +1898,7 @@ RUST_LOG=trace codex
 # Model Availability Issues
 
 ```bash
-# Check available models
-codex --model list
+# In the TUI, use /model to inspect or switch models
 
 # Fall back to different model
 codex --model gpt-5.2-codex
@@ -2292,7 +2288,7 @@ codex --ask-for-approval on-request   # Set approval
 # Advanced Commands
 
 ```bash
-codex mcp --config ~/.codex/config.toml  # MCP server mode (v0.37+)
+codex mcp-server --config ~/.codex/config.toml  # MCP server mode (v0.37+)
 codex apply                              # Apply last diff
 codex resume --last                      # Resume most recent session
 ```

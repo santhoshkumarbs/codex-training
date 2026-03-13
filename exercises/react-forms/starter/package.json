@@ -1,13 +1,13 @@
 {
-  "name": "registration-form",
+  "name": "registration-form-starter",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "test": "vitest",
-    "test:coverage": "vitest --coverage",
+    "test": "vitest --passWithNoTests",
+    "test:coverage": "vitest --coverage --passWithNoTests",
     "lint": "eslint src --ext ts,tsx"
   },
   "dependencies": {

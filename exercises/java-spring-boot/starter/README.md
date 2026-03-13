@@ -23,7 +23,7 @@ Using Codex, you'll add:
 
 ```bash
 # Run the application
-./mvnw spring-boot:run
+mvn spring-boot:run
 
 # Access H2 console
 open http://localhost:8080/h2-console

@@ -121,13 +121,13 @@ codex "Add caching, rate limiting, and basic security configuration"
 
 ```bash
 # Run the application
-./mvnw spring-boot:run
+mvn spring-boot:run
 
 # Run tests
-./mvnw test
+mvn test
 
 # Check test coverage
-./mvnw jacoco:report
+mvn jacoco:report
 
 # Access Swagger UI
 open http://localhost:8080/swagger-ui.html

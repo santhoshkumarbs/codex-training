@@ -35,7 +35,7 @@ This repository contains training materials for a 5-hour hands-on workshop on Op
 ### Model Names (March 2026)
 - `gpt-5.4` - Latest frontier model, default
 - `gpt-5.3-codex` - Frontier agentic coding model
-- `gpt-5.2-codex` - Stable, available on free tier
+- `gpt-5.2-codex` - Strong long-horizon coding model
 - `gpt-5.1-codex-max` - Deep reasoning, long sessions
 
 ### Installation

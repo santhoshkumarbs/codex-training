@@ -28,7 +28,7 @@ npm install
 # Start development server
 npm run dev
 
-# Run tests
+# Run tests (passes even before you add tests)
 npm test
 ```
 

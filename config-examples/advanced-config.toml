@@ -1,13 +1,13 @@
 # OpenAI Codex CLI - Advanced Configuration Example
 # Location: ~/.codex/config.toml
 
-# Model Configuration (March 2026)
+# Model Configuration (March 13, 2026)
 model = "gpt-5.4"
 model_provider = "openai"
 
 # Alternative OpenAI models:
 # model = "gpt-5.3-codex"      # Frontier agentic coding model
-# model = "gpt-5.2-codex"      # Stable, available on free tier
+# model = "gpt-5.2-codex"      # Strong agentic coding model
 # model = "gpt-5.1-codex-max"  # Deep reasoning, long sessions
 
 # Alternative model providers
@@ -18,8 +18,8 @@ model_provider = "openai"
 # model = "codellama"
 
 # Security & Sandbox Settings
-approval_policy = "on-request"  # Options: on-request, never, on-failure
-sandbox_mode = "auto"           # Options: auto, read-only, full-access
+approval_policy = "on-request"   # Options: on-request, never, on-failure (deprecated)
+sandbox_mode = "workspace-write" # Options: read-only, workspace-write, danger-full-access
 
 # Project Documentation
 project_doc_max_bytes = 32768   # Maximum bytes to read from AGENTS.md
@@ -56,7 +56,7 @@ format = "json"  # Options: json, pretty
 [profiles.development]
 model = "gpt-5.2-codex"
 approval_policy = "never"
-sandbox_mode = "full-access"
+sandbox_mode = "danger-full-access"
 shell_environment_policy = "inherit"
 
 [profiles.production]
@@ -68,7 +68,7 @@ shell_environment_policy = "explicit"
 [profiles.testing]
 model = "gpt-5.2-codex"
 approval_policy = "on-request"
-sandbox_mode = "auto"
+sandbox_mode = "workspace-write"
 project_doc_max_bytes = 16384
 
 # Model Context Protocol (MCP) Servers

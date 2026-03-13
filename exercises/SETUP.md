@@ -59,7 +59,7 @@ The starter includes:
 
 ```bash
 cd java-spring-boot/starter
-./mvnw clean install
+mvn clean install
 ```
 
 The starter project includes:
@@ -112,7 +112,7 @@ docker-compose up -d
 cd auth-service && npm install && cd ..
 cd order-service && pip install -r requirements.txt && cd ..
 cd notification-service && go mod download && cd ..
-cd analytics-service && ./mvnw clean install && cd ..
+cd analytics-service && mvn test && cd ..
 ```
 
 The starter includes:
@@ -167,13 +167,13 @@ codex
 ### Spring Boot
 ```bash
 # Run application
-./mvnw spring-boot:run
+mvn spring-boot:run
 
 # Run tests
-./mvnw test
+mvn test
 
 # Build
-./mvnw clean package
+mvn clean package
 ```
 
 ### Python

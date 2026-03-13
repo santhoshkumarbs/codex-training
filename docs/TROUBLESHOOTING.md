@@ -47,14 +47,11 @@ npm install -g @openai/codex
 ### "Authentication failed" or "Invalid API key"
 
 ```bash
-# Clear cached credentials
-rm -rf ~/.codex/auth
-
 # Re-authenticate with ChatGPT account
 codex login
 
-# Or set API key directly
-export OPENAI_API_KEY="sk-..."
+# Or store an API key with Codex
+printenv OPENAI_API_KEY | codex login --with-api-key
 ```
 
 ### "Rate limit exceeded"
@@ -73,8 +70,8 @@ cat ~/.codex/config.toml | grep rate
 ### Login hangs in headless environment
 
 ```bash
-# Use headless login for SSH/CI environments
-codex login --headless
+# Use device-auth flow for SSH/remote environments
+codex login --device-auth
 
 # Follow the URL and enter the code manually
 ```
@@ -91,11 +88,8 @@ codex login --headless
 # Check current sandbox mode
 grep sandbox_mode ~/.codex/config.toml
 
-# Temporarily elevate (interactive)
-# Type /elevate-sandbox in Codex
-
-# Or start with full access (use cautiously)
-codex --sandbox full-access
+# Restart with a more permissive sandbox if needed
+codex --sandbox danger-full-access
 ```
 
 ### "Cannot write to file outside workspace"
@@ -107,8 +101,8 @@ codex --sandbox full-access
 cd /path/to/project
 codex
 
-# Option 2: Use full-access mode
-codex --sandbox full-access
+# Option 2: Use danger-full-access mode
+codex --sandbox danger-full-access
 ```
 
 ---
@@ -187,15 +181,10 @@ codex
 ### "Model not available"
 
 ```bash
-# Check available models
-codex --model list
-
-# Use a fallback model
+# Launch with a specific known-good model
 codex --model gpt-5.2-codex
 
-# Check your API access level
-curl https://api.openai.com/v1/models \
-  -H "Authorization: Bearer $OPENAI_API_KEY"
+# In the TUI, use /model to inspect or switch models interactively
 ```
 
 ### "Unexpected model behavior"
@@ -347,7 +336,7 @@ codex
 |---------|--------------|-----------|
 | "command not found" | Not installed | `brew install --cask codex` |
 | "Authentication failed" | Bad credentials | `rm -rf ~/.codex/auth && codex login` |
-| "Operation not permitted" | Sandbox restriction | `/elevate-sandbox` or `--sandbox full-access` |
+| "Operation not permitted" | Sandbox restriction | Inspect permissions, or relaunch with `--sandbox danger-full-access` |
 | "MCP server failed" | Missing env var | Check `$GITHUB_TOKEN` etc. |
 | "Rate limit exceeded" | Too many requests | Wait 60s or use smaller model |
 | Slow responses | Large context | Reduce `project_doc_max_bytes` |

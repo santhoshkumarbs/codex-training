@@ -97,31 +97,21 @@ codex "Create comprehensive test suite with unit tests, integration tests, and a
 codex "Add code splitting, lazy loading, and performance optimizations"
 ```
 
-## Starter Structure
+## Suggested Target Structure
 
 ```
 src/
 ├── components/
-│   ├── forms/
-│   │   ├── RegistrationForm.tsx
-│   │   ├── FormInput.tsx
-│   │   ├── PasswordInput.tsx
-│   │   └── ProgressIndicator.tsx
-│   └── ui/
-│       ├── Button.tsx
-│       ├── Card.tsx
-│       └── Spinner.tsx
+│   └── RegistrationForm.tsx
 ├── hooks/
-│   ├── useFormPersistence.ts
-│   └── useDebounce.ts
 ├── schemas/
-│   └── registration.ts
 ├── services/
-│   └── api.ts
 ├── utils/
-│   └── validators.ts
 └── App.tsx
 ```
+
+The checked-in starter is intentionally minimal. Use Codex to evolve it toward a
+structure like the one above.
 
 ## Technologies
 

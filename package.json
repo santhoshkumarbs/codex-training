@@ -6,11 +6,11 @@
   "author": "Kenneth Kousen <ken.kousen@kousenit.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "slidev slides.md --open",
-    "build": "slidev build slides.md",
-    "export": "slidev export slides.md",
-    "export-pdf": "slidev export slides.md --format pdf",
-    "preview": "slidev preview",
+    "dev": "npx -y node@20 node_modules/@slidev/cli/bin/slidev.mjs slides.md --open",
+    "build": "npx -y node@20 node_modules/@slidev/cli/bin/slidev.mjs build slides.md",
+    "export": "npx -y node@20 node_modules/@slidev/cli/bin/slidev.mjs export slides.md",
+    "export-pdf": "npx -y node@20 node_modules/@slidev/cli/bin/slidev.mjs export slides.md --format pdf",
+    "preview": "npx -y node@20 node_modules/@slidev/cli/bin/slidev.mjs preview",
     "format": "prettier --write ."
   },
   "dependencies": {

@@ -153,8 +153,8 @@ DELETE /api/users/:id
 
 // Technologies
 - Express.js
-- TypeScript
-- Prisma ORM
+- JavaScript
+- pg
 - jsonwebtoken
 - bcrypt
 - PostgreSQL
@@ -285,11 +285,14 @@ services:
 # Start all services
 docker-compose up -d
 
-# Run integration tests
-./scripts/integration-tests.sh
+# Install dependencies in each service
+cd auth-service && npm install && cd ..
+cd order-service && pip install -r requirements.txt && cd ..
+cd notification-service && go mod download && cd ..
+cd analytics-service && mvn test && cd ..
 
-# Check service health
-curl http://localhost/health
+# Check the infrastructure services
+docker-compose ps
 
 # Create a user
 curl -X POST http://localhost/api/auth/register \
@@ -315,6 +318,4 @@ docker-compose down
 ## Monitoring URLs
 
 - RabbitMQ Management: http://localhost:15672
-- Grafana Dashboard: http://localhost:3000
-- Prometheus: http://localhost:9090
-- Application: http://localhost
+- Additional monitoring URLs only exist after you add the optional monitoring stack

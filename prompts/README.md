@@ -90,8 +90,8 @@ To convert a prompt to a skill:
 $skill-creator Convert my /security-audit prompt to a skill
 
 # Or manually create:
-mkdir -p ~/.codex/skills/security-audit
-mv ~/.codex/prompts/security-audit.md ~/.codex/skills/security-audit/SKILL.md
+mkdir -p ~/.agents/skills/security-audit
+mv ~/.codex/prompts/security-audit.md ~/.agents/skills/security-audit/SKILL.md
 # Add YAML frontmatter to SKILL.md
 ```
 

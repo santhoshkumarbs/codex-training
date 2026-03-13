@@ -1,25 +1,25 @@
 # Model Selection Guide
 
-Choose the right model for your task based on cost, speed, and capability.
+Choose the right model for your task based on capability, latency, and workflow fit.
 
 ---
 
 ## Quick Reference
 
-| Model | Best For | Speed | Cost | Context |
-|-------|----------|-------|------|---------|
-| **GPT-5.4** | Complex refactoring, architecture | Medium | $$$ | 272K |
-| **GPT-5.3-Codex** | General coding, reviews | Medium | $$ | 272K |
-| **GPT-5.2-Codex** | Quick tasks, high volume | Fast | $ | 272K |
-| **GPT-5.1-Codex-Max** | Large projects, deep reasoning | Slow | $$$$ | 272K |
-| **Claude Opus 4.6** | Alternative perspective | Medium | $$$ | 200K |
-| **Ollama (local)** | Privacy, offline, free | Varies | Free | Varies |
+| Model | Best For | Relative Speed | Context |
+|-------|----------|----------------|---------|
+| **GPT-5.4** | Complex reasoning, architecture, hard reviews | Fast | 1M |
+| **GPT-5.3-Codex** | Most capable current Codex model for agentic coding | Medium | 400K |
+| **GPT-5.2-Codex** | Long-horizon coding with lower cost than GPT-5.4 | Medium | 400K |
+| **GPT-5.1-Codex-Max** | Long-running tasks and deeper coding sessions | Slower | 400K |
+| **codex-mini-latest** | Fast Codex CLI iteration and lighter tasks | Fastest | 200K |
+| **Claude / Ollama** | Alternative provider or local/privacy needs | Varies | Varies |
 
 ---
 
 ## Model Details
 
-### GPT-5.4 (Default)
+### GPT-5.4 (Default in Codex today)
 
 **Use when:**
 - Complex architectural decisions
@@ -44,7 +44,7 @@ codex --model gpt-5.4 "Refactor authentication to use OAuth2"
 - Test generation
 - Documentation
 
-**Sweet spot:** Best balance of capability and cost for most tasks.
+**Sweet spot:** Best specialized OpenAI coding model when you want Codex-tuned behavior.
 
 ```bash
 codex --model gpt-5.3-codex "Add unit tests for UserService"
@@ -67,8 +67,6 @@ codex --model gpt-5.3-codex "Add unit tests for UserService"
 codex --model gpt-5.2-codex "Fix the typo in line 42"
 ```
 
-**Note:** Available on free tier.
-
 ### GPT-5.1-Codex-Max
 
 **Use when:**
@@ -83,6 +81,17 @@ codex --model gpt-5.2-codex "Fix the typo in line 42"
 
 ```bash
 codex --model gpt-5.1-codex-max "Analyze this entire microservices repo"
+```
+
+### codex-mini-latest
+
+**Use when:**
+- You want the fastest Codex-centric loop
+- The task is smaller or highly iterative
+- Cost and latency matter more than peak reasoning
+
+```bash
+codex --model codex-mini-latest "Rename these variables for clarity"
 ```
 
 ### Anthropic Claude
@@ -145,8 +154,8 @@ codex --profile thorough "Security audit"
 
 ### 2. Use Fast Mode
 
-Fast mode is now enabled by default. Toggle with `/fast` in the TUI
-or pass `--fast` on the command line.
+In the interactive TUI, `/fast` toggles faster inference. In Codex `0.114`,
+there is no top-level `--fast` CLI flag.
 
 ### 3. Be Specific in Prompts
 
@@ -178,7 +187,7 @@ codex exec "..." --model gpt-5.2-codex
 
 ```
 Is this a quick fix or formatting?
-├─ Yes → GPT-5.2-Codex
+├─ Yes → codex-mini-latest
 └─ No
    │
    Is this security/production critical?
@@ -190,7 +199,7 @@ Is this a quick fix or formatting?
       └─ No
          │
          Is cost a concern?
-         ├─ Yes → GPT-5.2-Codex
+         ├─ Yes → codex-mini-latest
          └─ No → GPT-5.3-Codex
 ```
 
@@ -201,8 +210,9 @@ Is this a quick fix or formatting?
 ```bash
 # Check API usage (OpenAI dashboard)
 open https://platform.openai.com/usage
+```
 
-# Enable logging to track token usage
+```toml
 [logging]
 level = "info"
 file = "~/.codex/log/codex.log"
@@ -214,14 +224,17 @@ file = "~/.codex/log/codex.log"
 
 | Task | Recommended Model |
 |------|-------------------|
-| Fix typos, formatting | 5.2-Codex |
-| Add comments/docs | 5.2-Codex |
-| Simple bug fixes | 5.2-Codex |
+| Fix typos, formatting | codex-mini-latest |
+| Add comments/docs | codex-mini-latest |
+| Simple bug fixes | codex-mini-latest |
 | Unit test generation | 5.3-Codex |
 | Code review | 5.3-Codex |
 | Refactoring | 5.3-Codex or 5.4 |
 | Architecture design | 5.4 |
 | Security audit | 5.4 |
 | Full codebase analysis | 5.1-Codex-Max |
-| CI/CD automation | 5.2-Codex |
-| Learning/experimenting | 5.2-Codex |
+| CI/CD automation | codex-mini-latest |
+| Learning/experimenting | codex-mini-latest |
+
+Pricing and rate limits change. Verify current numbers in the OpenAI models docs
+before presenting exact costs.

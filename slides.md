@@ -2094,7 +2094,7 @@ done
 - **Syntax highlighting** (v0.105) - Code blocks & `/theme` picker
 - **Voice input** (v0.105) - Hold spacebar to dictate (experimental)
 - **JS REPL** (v0.100) - Persistent JavaScript runtime
-- **Codex Desktop** (v0.95) - `codex app` launches desktop app
+- **Codex App** (v0.95) - Standalone desktop app for visual multi-agent workflows
 - **Smart approvals** (v0.93) - MCP tool approval by default
 - **Steer mode** (v0.98) - Enter sends during tasks, Tab queues
 - **Personality config** (v0.94) - friendly/pragmatic/none
@@ -2227,7 +2227,7 @@ in v0.36+ (check release notes)
 - **Plan & Fast modes** - Now enabled by default
 - **Multi-agent forking** - Sub-agents with max 6 concurrent
 - **JS REPL** - Persistent JavaScript runtime
-- **Codex Desktop** - Native app via `codex app`
+- **Codex App** - Native desktop app for multi-agent workflows
 - **Voice input** - Spacebar-to-dictate (experimental)
 
 </v-clicks>
@@ -2247,6 +2247,53 @@ in v0.36+ (check release notes)
 - Steer mode: Enter sends, Tab queues
 
 </v-clicks>
+
+---
+
+# The Codex App
+
+Standalone desktop application — your **Codex command center**
+
+<v-clicks>
+
+- **Native app** for macOS (Apple Silicon) and Windows
+- Launched February 2026, rapid updates (v26.312+)
+- Same models, config, and Skills as the CLI
+- Included with ChatGPT Plus, Pro, Business, Enterprise, Edu plans
+
+</v-clicks>
+
+---
+
+# Codex App: Key Features
+
+<v-clicks>
+
+- **Multi-agent parallelism** — run multiple agents simultaneously, each in its own thread
+- **Automatic worktree isolation** — each agent works on its own copy of the repo
+- **Visual diff review** — inline comments, stage/revert chunks, commit in-app
+- **Integrated terminal** — each thread gets its own terminal; app reads output for context
+- **Automations** — schedule recurring background tasks, review results in inbox
+- **Built-in Figma integration** — fetch designs, translate to production UI code
+- **Cloud deploy** — push to Cloudflare, Netlify, Render, Vercel from the app
+
+</v-clicks>
+
+---
+
+# CLI vs App: When to Use Which
+
+| Aspect | Codex CLI | Codex App |
+|--------|-----------|-----------|
+| **Interface** | Terminal | Desktop GUI |
+| **Multi-project** | Terminal tabs | Visual thread list |
+| **Diff review** | Basic | Inline with comments |
+| **Automations** | Not available | Built-in scheduler |
+| **Worktrees** | Manual | Automatic |
+| **Remote/SSH** | Supported | Not supported |
+| **Speed** | Faster | Slightly heavier |
+
+**Use both**: CLI for speed and remote work, App for visual management and parallel agents
 
 ---
 

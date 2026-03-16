@@ -1,6 +1,6 @@
 ---
 theme: seriph
-background: https://images.unsplash.com/photo-1651481236948-d065ac3e5919?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80
+background: https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80
 # addons commented out to avoid dependency issues
 # addons:
 #   - '@katzumi/slidev-addon-progress'

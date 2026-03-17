@@ -49,64 +49,64 @@ Build an e-commerce order processing system with:
 ## Codex Prompts Progression
 
 ### Step 1: Project Structure
-```bash
-codex "Create a microservices project structure with docker-compose,
-       including services for auth (Node.js), orders (Python),
-       notifications (Go), and analytics (Java Spring Boot)"
+```
+Create a microservices project structure with docker-compose,
+including services for auth (Node.js), orders (Python),
+notifications (Go), and analytics (Java Spring Boot)
 ```
 
 ### Step 2: Auth Service
-```bash
-codex "Build Node.js auth service with Express, JWT, PostgreSQL,
-       user CRUD operations, login/logout, and refresh tokens"
+```
+Build Node.js auth service with Express, JWT, PostgreSQL,
+user CRUD operations, login/logout, and refresh tokens
 ```
 
 ### Step 3: Order Service
-```bash
-codex "Create Python FastAPI order service with async handlers,
-       PostgreSQL models, Pydantic schemas, and RabbitMQ integration"
+```
+Create Python FastAPI order service with async handlers,
+PostgreSQL models, Pydantic schemas, and RabbitMQ integration
 ```
 
 ### Step 4: Notification Service
-```bash
-codex "Implement Go notification service with RabbitMQ consumer,
-       email/SMS providers, template engine, and Redis caching"
+```
+Implement Go notification service with RabbitMQ consumer,
+email/SMS providers, template engine, and Redis caching
 ```
 
 ### Step 5: Analytics Service
-```bash
-codex "Build Spring Boot analytics service with MongoDB,
-       real-time metrics collection, REST API, and WebSocket updates"
+```
+Build Spring Boot analytics service with MongoDB,
+real-time metrics collection, REST API, and WebSocket updates
 ```
 
 ### Step 6: Message Queue Setup
-```bash
-codex "Configure RabbitMQ with exchanges, queues, and bindings
-       for order events, user events, and notification events"
+```
+Configure RabbitMQ with exchanges, queues, and bindings
+for order events, user events, and notification events
 ```
 
 ### Step 7: Docker Configuration
-```bash
-codex "Create Docker configurations for all services with
-       multi-stage builds, health checks, and docker-compose orchestration"
+```
+Create Docker configurations for all services with
+multi-stage builds, health checks, and docker-compose orchestration
 ```
 
 ### Step 8: API Gateway
-```bash
-codex "Setup nginx API gateway with routing rules, rate limiting,
-       JWT validation, and load balancing"
+```
+Setup nginx API gateway with routing rules, rate limiting,
+JWT validation, and load balancing
 ```
 
 ### Step 9: Integration Tests
-```bash
-codex "Create integration tests for the complete workflow:
-       user registration -> login -> create order -> receive notification"
+```
+Create integration tests for the complete workflow:
+user registration -> login -> create order -> receive notification
 ```
 
 ### Step 10: Monitoring & Logging
-```bash
-codex "Add Prometheus metrics, Grafana dashboards, and
-       centralized logging with ELK stack"
+```
+Add Prometheus metrics, Grafana dashboards, and
+centralized logging with ELK stack
 ```
 
 ## Events & Messages

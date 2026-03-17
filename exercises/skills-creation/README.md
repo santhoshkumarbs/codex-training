@@ -162,7 +162,7 @@ Use lowercase, typically matching:
 
 3. Alternatively, test implicit invocation:
    ```bash
-   codex "Write a commit message for my staged changes"
+   Write a commit message for my staged changes
    ```
 
 ## Success Criteria

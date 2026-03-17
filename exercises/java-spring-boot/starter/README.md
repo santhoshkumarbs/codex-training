@@ -34,7 +34,7 @@ open http://localhost:8080/swagger-ui.html
 
 ## First Codex Prompt
 
-```bash
-codex "Create a Task entity with id, title, description, status, priority, 
-dueDate, createdAt, and updatedAt fields. Include Status and Priority enums."
+```
+Create a Task entity with id, title, description, status, priority,
+dueDate, createdAt, and updatedAt fields. Include Status and Priority enums.
 ```

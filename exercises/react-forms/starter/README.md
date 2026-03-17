@@ -34,8 +34,8 @@ npm test
 
 ## First Codex Prompt
 
-```bash
-codex "Create a Zod schema for a registration form with firstName, lastName, 
-email, password, and confirmPassword. Include validation for email format, 
-password strength (8+ chars, uppercase, number), and matching passwords."
+```
+Create a Zod schema for a registration form with firstName, lastName,
+email, password, and confirmPassword. Include validation for email format,
+password strength (8+ chars, uppercase, number), and matching passwords.
 ```

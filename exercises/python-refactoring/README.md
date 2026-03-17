@@ -48,53 +48,53 @@ The `starter/legacy_processor.py` file contains poorly written data processing c
 ## Codex Prompts Progression
 
 ### Step 1: Analyze Current Code
-```bash
-codex "Analyze legacy_processor.py and create a refactoring plan identifying all issues and improvements needed"
+```
+Analyze legacy_processor.py and create a refactoring plan identifying all issues and improvements needed
 ```
 
 ### Step 2: Add Type Hints
-```bash
-codex "Add comprehensive type hints to all functions and classes using modern Python 3.9+ syntax"
+```
+Add comprehensive type hints to all functions and classes using modern Python 3.9+ syntax
 ```
 
 ### Step 3: Restructure with Design Patterns
-```bash
-codex "Refactor the calculator using the Strategy pattern and the data processor using Chain of Responsibility"
+```
+Refactor the calculator using the Strategy pattern and the data processor using Chain of Responsibility
 ```
 
 ### Step 4: Improve Error Handling
-```bash
-codex "Replace all generic exceptions with custom exceptions and add proper error handling with logging"
+```
+Replace all generic exceptions with custom exceptions and add proper error handling with logging
 ```
 
 ### Step 5: Modernize Code
-```bash
-codex "Convert to use dataclasses, add decorators for validation, and implement context managers for file operations"
+```
+Convert to use dataclasses, add decorators for validation, and implement context managers for file operations
 ```
 
 ### Step 6: Create Test Suite
-```bash
-codex "Create comprehensive pytest test suite with fixtures, parameterized tests, and property-based tests using Hypothesis"
+```
+Create comprehensive pytest test suite with fixtures, parameterized tests, and property-based tests using Hypothesis
 ```
 
 ### Step 7: Add Documentation
-```bash
-codex "Add Google-style docstrings to all functions and classes, create usage examples"
+```
+Add Google-style docstrings to all functions and classes, create usage examples
 ```
 
 ### Step 8: Setup Code Quality Tools
-```bash
-codex "Configure black, isort, flake8, pylint, and mypy with appropriate settings. Add pre-commit hooks"
+```
+Configure black, isort, flake8, pylint, and mypy with appropriate settings. Add pre-commit hooks
 ```
 
 ### Step 9: Create Build System
-```bash
-codex "Create a Makefile with targets for format, lint, test, coverage, and docs"
+```
+Create a Makefile with targets for format, lint, test, coverage, and docs
 ```
 
 ### Step 10: Package for Distribution
-```bash
-codex "Create setup.py and pyproject.toml for proper Python packaging with all dependencies"
+```
+Create setup.py and pyproject.toml for proper Python packaging with all dependencies
 ```
 
 ## Legacy Code Issues to Fix

@@ -51,53 +51,53 @@ The `starter/` directory contains a basic Spring Boot project structure.
 ## Codex Prompts Progression
 
 ### Step 1: Analyze Project Structure
-```bash
-codex "Analyze the current Spring Boot project structure and identify what needs to be added for a task management API"
+```
+Analyze the current Spring Boot project structure and identify what needs to be added for a task management API
 ```
 
 ### Step 2: Create Domain Model
-```bash
-codex "Create JPA entities for Task with proper annotations, validation, and auditing. Include Status and Priority enums"
+```
+Create JPA entities for Task with proper annotations, validation, and auditing. Include Status and Priority enums
 ```
 
 ### Step 3: Implement Repository Layer
-```bash
-codex "Create Spring Data JPA repository for Task with custom query methods for searching and filtering"
+```
+Create Spring Data JPA repository for Task with custom query methods for searching and filtering
 ```
 
 ### Step 4: Build Service Layer
-```bash
-codex "Implement TaskService with business logic including validation rules and error handling"
+```
+Implement TaskService with business logic including validation rules and error handling
 ```
 
 ### Step 5: Create REST Controllers
-```bash
-codex "Generate REST controllers with proper HTTP status codes, request/response DTOs, and OpenAPI annotations"
+```
+Generate REST controllers with proper HTTP status codes, request/response DTOs, and OpenAPI annotations
 ```
 
 ### Step 6: Add Exception Handling
-```bash
-codex "Create global exception handler with custom exceptions and meaningful error responses"
+```
+Create global exception handler with custom exceptions and meaningful error responses
 ```
 
 ### Step 7: Configure Database
-```bash
-codex "Configure H2 database with initialization scripts and sample data for development"
+```
+Configure H2 database with initialization scripts and sample data for development
 ```
 
 ### Step 8: Generate Tests
-```bash
-codex "Generate comprehensive test suite including unit tests for services and integration tests for controllers with at least 80% coverage"
+```
+Generate comprehensive test suite including unit tests for services and integration tests for controllers with at least 80% coverage
 ```
 
 ### Step 9: Add Documentation
-```bash
-codex "Configure Swagger UI and add detailed OpenAPI documentation for all endpoints"
+```
+Configure Swagger UI and add detailed OpenAPI documentation for all endpoints
 ```
 
 ### Step 10: Performance & Security
-```bash
-codex "Add caching, rate limiting, and basic security configuration"
+```
+Add caching, rate limiting, and basic security configuration
 ```
 
 ## Success Criteria

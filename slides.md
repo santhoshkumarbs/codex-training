@@ -1016,19 +1016,189 @@ backgroundSize: cover
     MCP Integration
   </h2>
   <p class="text-xl text-white bg-black bg-opacity-60 px-4 py-2 rounded mt-4">
-    Extend Codex with external tools
+    Extend Codex with external tools and data
   </p>
 </div>
 
 ---
 
-# Model Context Protocol (MCP)
+# What Is MCP?
 
-## Configure MCP Servers
+An open protocol that connects AI tools to external data sources and services.
+
+<v-clicks>
+
+- **Problem**: LLMs only know what's in their training data
+- **Solution**: MCP lets them call external tools at runtime
+- **Analogy**: Like USB for AI — a standard way to plug in capabilities
+- **Adopted by**: Codex, Claude Code, Cursor, VS Code, and others
+
+</v-clicks>
 
 ---
 
-# GitHub MCP Server
+# How MCP Works
+
+```mermaid
+sequenceDiagram
+    participant Codex
+    participant Server as MCP Server
+    participant Source as External Source
+
+    Codex->>Server: Launch server process
+    Server-->>Codex: Here are my tools (discovery)
+    Note over Codex: User asks a question...
+    Codex->>Server: Call tool (e.g., query-docs)
+    Server->>Source: Fetch data
+    Source-->>Server: Return data
+    Server-->>Codex: Tool result
+    Note over Codex: Uses result in response
+```
+
+---
+
+# MCP Concepts
+
+| Concept | Description |
+|---------|-------------|
+| **Server** | A process that exposes tools (runs locally or remotely) |
+| **Tool** | A function the server provides (e.g., "query-docs") |
+| **Transport** | How Codex talks to the server: **stdio** (local) or **HTTP** (remote) |
+| **Discovery** | On startup, Codex asks each server what tools it has |
+| **Invocation** | During a conversation, Codex calls tools when relevant |
+
+---
+
+# Two Transport Types
+
+### stdio (Local Process)
+
+Codex launches the server as a child process; they communicate over stdin/stdout.
+
+```toml
+[mcp_servers.context7]
+command = "npx"
+args = ["-y", "@upstash/context7-mcp", "--api-key", "YOUR_KEY"]
+```
+
+### HTTP (Remote Server)
+
+Codex connects to a running server over the network.
+
+```toml
+[mcp_servers.context7-remote]
+url = "https://mcp.context7.com/mcp"
+http_headers = { "CONTEXT7_API_KEY" = "YOUR_KEY" }
+```
+
+---
+
+# Adding MCP Servers to Codex
+
+### CLI Command (Recommended)
+
+```bash
+codex mcp add context7 -- npx -y @upstash/context7-mcp --api-key YOUR_KEY
+```
+
+### Verify
+
+```bash
+codex mcp list
+```
+
+### Remove
+
+```bash
+codex mcp remove context7
+```
+
+---
+
+# Configuration in config.toml
+
+The `codex mcp add` command writes to `~/.codex/config.toml`:
+
+```toml
+[mcp_servers.context7]
+command = "npx"
+args = ["-y", "@upstash/context7-mcp", "--api-key", "YOUR_KEY"]
+```
+
+### Optional Settings
+
+```toml
+[mcp_servers.context7]
+command = "npx"
+args = ["-y", "@upstash/context7-mcp", "--api-key", "YOUR_KEY"]
+startup_timeout_sec = 15   # Abort if server takes too long to start
+tool_timeout_sec = 30      # Abort if a tool call takes too long
+enabled = true             # Toggle without removing config
+```
+
+---
+
+# User-Level vs Project-Level
+
+### User-Level (default)
+
+Available in all projects. Stored in `~/.codex/config.toml`.
+
+```bash
+codex mcp add context7 -- npx -y @upstash/context7-mcp --api-key YOUR_KEY
+```
+
+### Project-Level
+
+Only available in this project. Stored in `.codex/config.toml`.
+
+```bash
+codex mcp add --scope project context7 -- npx -y @upstash/context7-mcp --api-key YOUR_KEY
+```
+
+Project-level is useful when a server is specific to one codebase (e.g., a database server for that project's schema).
+
+---
+
+# Context7: Live Documentation
+
+Context7 is an MCP server that fetches up-to-date library documentation.
+
+<v-clicks>
+
+- **Two tools**: `resolve-library-id` and `query-docs`
+- **Thousands of libraries**: React, Spring Boot, Zod, pytest, and more
+- **Free API key**: Sign up at [context7.com](https://context7.com)
+- **Why it matters**: Codex uses current APIs instead of stale training data
+
+</v-clicks>
+
+---
+
+# Context7 in Action
+
+### Without Context7
+
+```
+Create a Zod schema for a registration form
+```
+
+Codex relies on training data — might use outdated syntax.
+
+### With Context7
+
+```
+Use context7 to look up the current Zod docs, then create
+a registration form schema with email and password validation
+```
+
+Codex fetches live Zod documentation first, then writes code using the current API.
+
+---
+
+# More MCP Server Examples
+
+### GitHub
 
 ```toml
 [mcp_servers.github]
@@ -1037,9 +1207,7 @@ args = ["@modelcontextprotocol/server-github"]
 env = { GITHUB_TOKEN = "${GITHUB_TOKEN}" }
 ```
 
----
-
-# Database MCP Server
+### PostgreSQL
 
 ```toml
 [mcp_servers.postgres]
@@ -1050,107 +1218,49 @@ env = { CONNECTION_STRING = "${DATABASE_URL}" }
 
 ---
 
-# MCP Startup Guardrails (v0.31+)
+# MCP Startup Guardrails
 
-Prevent flaky tools from freezing Codex:
+Prevent flaky servers from freezing Codex:
 
 ```toml
 [mcp_servers.github]
 command = "npx"
 args = ["@modelcontextprotocol/server-github"]
-startup_timeout_ms = 15000  # Abort after 15 seconds
+startup_timeout_sec = 15  # Abort after 15 seconds
 ```
 
----
-
-# MCP Timeout Benefits
-
 <v-clicks>
 
-- Clean abort when helpers fail to boot
-- Prevents entire run from freezing
-- Better error messages
-- Faster feedback on configuration issues
+- Clean abort when servers fail to boot
+- Prevents entire session from freezing
+- Clear error messages on configuration issues
 
 </v-clicks>
 
 ---
 
-# MCP Usage
+# Running Codex as an MCP Server
 
-<v-clicks>
-
-- Automatically available when configured
-- Access external tools and data
-- Extend Codex capabilities
-
-</v-clicks>
-
----
-
-# Running Codex as MCP Server
+Codex itself can be exposed as an MCP server for other tools:
 
 ```bash
-# Modern approach (v0.37+)
 codex mcp-server --config ~/.codex/config.toml
 ```
 
----
-
-# MCP Architecture
-
-```mermaid
-flowchart TB
-    CC[Claude Code] --> CM[Codex MCP Server]
-    IDE[IDE Extensions] --> CM
-    CI[CI/CD Pipeline] --> CM
-
-    CM --> FC[Firecrawl]
-    CM --> GA[Gemini Analyzer]
-    CM --> PW[Playwright]
-    CM --> C7[Context7]
-
-    style CC fill:#FF6B6B,stroke:#333,stroke-width:2px,color:#000
-    style CM fill:#4ECDC4,stroke:#333,stroke-width:2px,color:#000
-    style IDE fill:#FFA500,stroke:#333,stroke-width:2px,color:#000
-    style CI fill:#FFD700,stroke:#333,stroke-width:2px,color:#000
-    style FC fill:#95E1D3,stroke:#333,stroke-width:2px,color:#000
-    style GA fill:#95E1D3,stroke:#333,stroke-width:2px,color:#000
-    style PW fill:#95E1D3,stroke:#333,stroke-width:2px,color:#000
-    style C7 fill:#95E1D3,stroke:#333,stroke-width:2px,color:#000
-```
-
----
-
-# MCP Server Benefits
-
-The `codex mcp-server` command exposes Codex as a tool:
+### Use Cases
 
 <v-clicks>
 
-- Other agents can call Codex workflows
+- Claude Code can call Codex as a sub-agent
 - IDEs can integrate without plugins
-- Claude Code can use as sub-agent
+- CI/CD pipelines can invoke Codex workflows
 - Mix model strengths (GPT + Claude)
 
 </v-clicks>
 
 ---
 
-# Why Codex as Sub-Agent?
-
-<v-clicks>
-
-- Leverage GPT-5-Codex for complex tasks
-- Use Codex's specialized prompts
-- Access different model providers
-- Unified approval/sandbox policies
-
-</v-clicks>
-
----
-
-# Integration Example
+# Codex as Sub-Agent
 
 ```bash
 # Add Codex as MCP server in Claude Code
@@ -1163,27 +1273,37 @@ claude mcp list
 claude mcp remove codex
 ```
 
----
-
-# Integration Options
-
 <v-clicks>
 
-- Connect from other MCP clients
-- Use in multi-agent workflows
-- Integrate with IDEs
+- Leverage GPT-5-Codex for specialized coding tasks
+- Use Codex's sandbox and approval policies
+- Each tool stays in its strength zone
 
 </v-clicks>
 
 ---
 
-# Example Client Connection
+# MCP Architecture
 
-```javascript
-const client = new MCPClient({
-  url: 'http://localhost:8080',
-  capabilities: ['code-generation', 'review']
-});
+```mermaid
+flowchart TB
+    CC[Claude Code] --> CM[Codex MCP Server]
+    IDE[IDE Extensions] --> CM
+    CI[CI/CD Pipeline] --> CM
+
+    CM --> C7[Context7]
+    CM --> GH[GitHub]
+    CM --> PG[PostgreSQL]
+    CM --> Custom[Custom Server]
+
+    style CC fill:#FF6B6B,stroke:#333,stroke-width:2px,color:#000
+    style CM fill:#4ECDC4,stroke:#333,stroke-width:2px,color:#000
+    style IDE fill:#FFA500,stroke:#333,stroke-width:2px,color:#000
+    style CI fill:#FFD700,stroke:#333,stroke-width:2px,color:#000
+    style C7 fill:#95E1D3,stroke:#333,stroke-width:2px,color:#000
+    style GH fill:#95E1D3,stroke:#333,stroke-width:2px,color:#000
+    style PG fill:#95E1D3,stroke:#333,stroke-width:2px,color:#000
+    style Custom fill:#95E1D3,stroke:#333,stroke-width:2px,color:#000
 ```
 
 ---
@@ -1544,6 +1664,7 @@ backgroundSize: cover
 - **Lab 3**: React TypeScript Forms (frontend development)
 - **Lab 4**: Microservices Architecture (multi-language)
 - **Lab 5**: Skills Creation (extend Codex)
+- **Lab 6**: MCP Servers with Context7 (connect external data)
 
 </v-clicks>
 
@@ -1639,6 +1760,20 @@ Note: You build the solution using Codex—no reference implementations provided
 - Task: Build a skill that generates conventional commit messages
 - Workspace: `exercises/skills-creation/`
 - Instructions: open `exercises/skills-creation/README.md`
+
+</v-clicks>
+
+---
+
+# Lab 6: MCP Servers with Context7
+
+<v-clicks>
+
+- Objective: Configure an MCP server and use live documentation in prompts
+- Timebox: 15–20 minutes
+- Pre-req: Free API key from [context7.com](https://context7.com)
+- Workspace: `exercises/mcp-context7/` (then apply to `exercises/react-forms/`)
+- Instructions: open `exercises/mcp-context7/README.md`
 
 </v-clicks>
 

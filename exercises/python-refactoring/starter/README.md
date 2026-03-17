@@ -42,7 +42,7 @@ pytest --cov=. --cov-report=html
 
 ## First Codex Prompt
 
-```bash
-codex "Analyze legacy_processor.py and list all the code smells and 
-issues that need to be fixed. Then start by adding type hints."
+```
+Analyze legacy_processor.py and list all the code smells and
+issues that need to be fixed. Then start by adding type hints.
 ```

@@ -22,6 +22,9 @@ This directory contains hands-on exercises for learning OpenAI Codex CLI.
 ### Lab 5: Agent Skills
 - `skills-creation/` - Create a custom Codex skill for commit messages
 
+### Lab 6: MCP Servers
+- `mcp-context7/` - Connect Codex to live library documentation via MCP
+
 ## Getting Started
 
 Each exercise directory contains:
@@ -39,6 +42,7 @@ Note: These are hands-on exercises where you build the solution using Codex. Ref
 3. **Lab 3** - React Forms (frontend development)
 4. **Lab 4** - Microservices (multi-language, advanced)
 5. **Lab 5** - Skills Creation (extending Codex)
+6. **Lab 6** - MCP Servers (connecting external data sources)
 
 ## Using Codex for Exercises
 

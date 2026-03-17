@@ -29,6 +29,7 @@ This repository contains training materials for a 5-hour hands-on workshop on Op
 - **Lab 3**: React 18, TypeScript, Vite, React Hook Form, Zod
 - **Lab 4**: Docker, RabbitMQ, PostgreSQL, MongoDB
 - **Lab 5**: Codex Skills (SKILL.md format)
+- **Lab 6**: MCP Servers (Context7, live documentation)
 
 ## Important Notes
 

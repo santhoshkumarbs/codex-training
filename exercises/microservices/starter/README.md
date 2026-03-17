@@ -67,16 +67,16 @@ open http://localhost:15672  # admin/admin
 
 Start with the auth service:
 
-```bash
-codex "Create a Node.js auth service with Express, JWT authentication,
+```
+Create a Node.js auth service with Express, JWT authentication,
 user registration/login endpoints, and PostgreSQL for user storage.
-Include password hashing with bcrypt and refresh token support."
+Include password hashing with bcrypt and refresh token support.
 ```
 
 Then build the order service:
 
-```bash
-codex "Create a Python FastAPI order service with endpoints for
+```
+Create a Python FastAPI order service with endpoints for
 creating orders, getting order status, and publishing order events
-to RabbitMQ when orders are created."
+to RabbitMQ when orders are created.
 ```

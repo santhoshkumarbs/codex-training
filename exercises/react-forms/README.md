@@ -48,53 +48,53 @@ Build a registration system that includes:
 ## Codex Prompts Progression
 
 ### Step 1: Project Setup
-```bash
-codex "Create a React TypeScript project with Vite, configure ESLint, Prettier, and Tailwind CSS"
+```
+Create a React TypeScript project with Vite, configure ESLint, Prettier, and Tailwind CSS
 ```
 
 ### Step 2: Form Schema
-```bash
-codex "Define Zod schemas for registration form with email, password, username, and terms validation"
+```
+Define Zod schemas for registration form with email, password, username, and terms validation
 ```
 
 ### Step 3: Form Component
-```bash
-codex "Create RegistrationForm component using React Hook Form with Zod resolver and TypeScript types"
+```
+Create RegistrationForm component using React Hook Form with Zod resolver and TypeScript types
 ```
 
 ### Step 4: Custom Inputs
-```bash
-codex "Build custom input components with error states, labels, and accessibility attributes"
+```
+Build custom input components with error states, labels, and accessibility attributes
 ```
 
 ### Step 5: Password Strength
-```bash
-codex "Implement password strength meter with visual feedback and requirements checklist"
+```
+Implement password strength meter with visual feedback and requirements checklist
 ```
 
 ### Step 6: Async Validation
-```bash
-codex "Add async username availability check with debouncing and loading states"
+```
+Add async username availability check with debouncing and loading states
 ```
 
 ### Step 7: Multi-Step Form
-```bash
-codex "Convert to multi-step form with progress indicator and step navigation"
+```
+Convert to multi-step form with progress indicator and step navigation
 ```
 
 ### Step 8: State Management
-```bash
-codex "Implement form state persistence with Context API and local storage"
+```
+Implement form state persistence with Context API and local storage
 ```
 
 ### Step 9: Testing Suite
-```bash
-codex "Create comprehensive test suite with unit tests, integration tests, and accessibility tests"
+```
+Create comprehensive test suite with unit tests, integration tests, and accessibility tests
 ```
 
 ### Step 10: Performance Optimization
-```bash
-codex "Add code splitting, lazy loading, and performance optimizations"
+```
+Add code splitting, lazy loading, and performance optimizations
 ```
 
 ## Suggested Target Structure
@@ -202,16 +202,15 @@ npm run build
 
 Use Codex to add E2E and accessibility testing:
 
-```bash
-codex "Add Playwright for E2E testing with test:e2e script"
-codex "Add axe-core for accessibility testing with test:a11y script"
+```
+Add Playwright for E2E testing with test:e2e script
+Add axe-core for accessibility testing with test:a11y script
 ```
 
 ## Example Codex Session
 
-```bash
-# Start with comprehensive prompt
-codex "Create a production-ready React TypeScript registration form with:
+```
+Create a production-ready React TypeScript registration form with:
 - React Hook Form + Zod validation
 - Custom styled components with Tailwind
 - Password strength meter
@@ -220,5 +219,5 @@ codex "Create a production-ready React TypeScript registration form with:
 - Full test coverage
 - Accessibility compliance
 - Mobile responsive design
-Include all best practices for performance, security, and UX"
+Include all best practices for performance, security, and UX
 ```
